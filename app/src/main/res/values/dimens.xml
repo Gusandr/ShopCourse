@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Status bar -->
+    <dimen name="status_bar_height">28dp</dimen>
+    <dimen name="status_bar_padding_horizontal">16dp</dimen>
+    <dimen name="status_icon_size">16dp</dimen>
+    <dimen name="status_icons_spacing">6dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="font_size_status_bar">14sp</dimen>
+    <dimen name="font_size_title">28sp</dimen>
+    <dimen name="font_size_course_button">14sp</dimen>
+    <dimen name="font_size_badge">12sp</dimen>
+    <dimen name="font_size_button">14sp</dimen>
+
+    <!-- Title section -->
+    <dimen name="title_margin_top">48dp</dimen>
+    <dimen name="title_line_spacing">8dp</dimen>
+    <dimen name="underline_width">90dp</dimen>
+    <dimen name="underline_height">2dp</dimen>
+    <dimen name="underline_margin_top">4dp</dimen>
+
+    <!-- Grid layout -->
+    <dimen name="courses_grid_margin_top">48dp</dimen>
+    <dimen name="grid_padding_horizontal">16dp</dimen>
+    <dimen name="grid_item_height">60dp</dimen>
+    <dimen name="grid_item_empty_width">103dp</dimen>
+    <dimen name="grid_item_badge_width">103dp</dimen>
+    <dimen name="grid_item_spacing">8dp</dimen>
+
+    <!-- Badge styling -->
+    <dimen name="badge_width">60dp</dimen>
+    <dimen name="badge_height">60dp</dimen>
+    <dimen name="badge_button_padding_horizontal">12dp</dimen>
+    <dimen name="badge_button_padding_vertical">8dp</dimen>
+    <dimen name="badge_corner_radius">28dp</dimen>
+
+    <!-- Continue button -->
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="button_margin_horizontal">16dp</dimen>
+    <dimen name="button_margin_top">32dp</dimen>
+    <dimen name="button_margin_bottom">16dp</dimen>
+    <dimen name="button_corner_radius">100dp</dimen>
+
+    <!-- Content padding -->
+    <dimen name="content_padding_horizontal">16dp</dimen>
+    <dimen name="content_padding_bottom">24dp</dimen>
+
+    <!-- Bottom indicator -->
+    <dimen name="bottom_indicator_width">136dp</dimen>
+    <dimen name="bottom_indicator_height">4dp</dimen>
+</resources>

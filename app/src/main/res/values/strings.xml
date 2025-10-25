@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">ShopCourse</string>
+
+    <!-- Title section -->
+    <string name="onboarding_title_line1">Тысячи курсов</string>
+    <string name="onboarding_title_line2">в одном месте</string>
+
+    <!-- Course names -->
+    <string name="course_administration">С Администрирование</string>
+    <string name="course_traffic">Траф</string>
+    <string name="course_marketing">ИТ маркетинг</string>
+    <string name="course_b2b_marketing">B2B маркетинг</string>
+    <string name="course_google_analytics">Google Anal</string>
+    <string name="course_researcher">Бизнес исследователь</string>
+    <string name="course_web_analytics">Веб-аналитика</string>
+    <string name="course_big_data">Big Da</string>
+    <string name="course_design">Веб-дизайн</string>
+    <string name="course_cinema4d">Cinema 4D</string>
+    <string name="course_prompt_engineering">Промпт ин</string>
+    <string name="course_three_js">Three.js</string>
+    <string name="course_parsing">Парсинг</string>
+    <string name="course_python">Python-разр</string>
+
+    <!-- Badges -->
+    <string name="badge_rabbitmq">RabbitMQ</string>
+    <string name="badge_big_data">Big Data</string>
+    <string name="badge_three_js">Three.js</string>
+
+    <!-- Buttons -->
+    <string name="button_continue">Продолжить</string>
+
+    <!-- Status and accessibility -->
+    <string name="time_placeholder">9:30</string>
+    <string name="signal_strength">Сигнал сети</string>
+    <string name="wifi_status">WiFi статус</string>
+    <string name="battery_status">Статус батареи</string>
 </resources>
