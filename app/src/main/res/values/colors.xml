@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-
-    <!-- Background -->
-    <color name="onboarding_background">#1a1a1a</color>
-
-    <!-- Text colors -->
-    <color name="text_primary_dark">#ffffff</color>
+    <color name="background_default">#151515</color>
     <color name="text_primary_light">#f2f2f3</color>
-    <color name="course_text_normal">#cccccc</color>
-    <color name="text_badge">#ffffff</color>
+    <color name="course_badge_background">#12B956</color>
+    <color name="text_secondary">#80F2F2F3</color>
 
-    <!-- Badge and button colors -->
-    <color name="course_badge_background">#12b956</color>
-
-    <!-- Button ripple -->
-    <color name="button_ripple_dark">#1e1e1e</color>
 </resources>

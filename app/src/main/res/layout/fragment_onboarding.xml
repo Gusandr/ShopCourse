@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/onboarding_background"
+    android:background="@color/background_default"
     tools:context=".presentation.screens.onboarding.OnboardingFragment">
 
     <ScrollView
@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,68 +20,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="100dp">
 
-            <!-- Status bar imitation -->
-            <FrameLayout
-                android:id="@+id/status_container"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/status_bar_height">
-
-                <TextView
-                    android:id="@+id/time_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="@dimen/status_bar_padding_horizontal"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/time_placeholder"
-                    android:textColor="@color/text_primary_dark"
-                    android:textSize="@dimen/font_size_status_bar"
-                    tools:ignore="HardcodedText" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="@dimen/status_bar_padding_horizontal"
-                    android:orientation="horizontal"
-                    android:spacing="@dimen/status_icons_spacing">
-
-                    <ImageView
-                        android:id="@+id/signal_icon"
-                        android:layout_width="@dimen/status_icon_size"
-                        android:layout_height="@dimen/status_icon_size"
-                        android:contentDescription="@string/signal_strength"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_signal_cellular_4_bar" />
-
-                    <ImageView
-                        android:id="@+id/wifi_icon"
-                        android:layout_width="@dimen/status_icon_size"
-                        android:layout_height="@dimen/status_icon_size"
-                        android:contentDescription="@string/wifi_status"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_wifi" />
-
-                    <ImageView
-                        android:id="@+id/battery_icon"
-                        android:layout_width="@dimen/status_icon_size"
-                        android:layout_height="@dimen/status_icon_size"
-                        android:contentDescription="@string/battery_status"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_battery_full" />
-                </LinearLayout>
-            </FrameLayout>
-
-            <!-- Title section -->
             <LinearLayout
                 android:id="@+id/title_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/title_margin_top"
-                android:paddingStart="@dimen/content_padding_horizontal"
-                android:paddingEnd="@dimen/content_padding_horizontal"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
@@ -89,319 +35,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
+                    android:lineHeight="36dp"
                     android:text="@string/onboarding_title_line1"
                     android:textColor="@color/text_primary_light"
-                    android:textSize="@dimen/font_size_title"
-                    android:lineHeight="@dimen/title_line_height" />
+                    android:textSize="@dimen/font_size_title" />
 
                 <TextView
                     android:id="@+id/main_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/title_line_spacing"
                     android:fontFamily="@font/roboto_regular"
+                    android:lineHeight="36dp"
                     android:text="@string/onboarding_title_line2"
                     android:textColor="@color/text_primary_light"
-                    android:textSize="@dimen/font_size_title"
-                    android:lineHeight="@dimen/title_line_height" />
+                    android:textSize="@dimen/font_size_title" />
             </LinearLayout>
 
-            <!-- Green horizontal line above -->
-            <View
-                android:id="@+id/green_divider_top"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_height"
-                android:layout_marginTop="@dimen/divider_margin_top"
-                android:background="@color/course_badge_background" />
-
-            <!-- Courses grid container -->
             <LinearLayout
                 android:id="@+id/courses_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/content_padding_horizontal"
-                android:layout_marginEnd="@dimen/content_padding_horizontal"
-                android:layout_marginTop="@dimen/courses_margin_top"
+                android:layout_marginTop="32dp"
                 android:orientation="vertical">
 
-                <!-- Row 1: Администрирование | [empty] | RabbitMQ -->
-                <LinearLayout
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/row_height"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_courses" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_administration"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/badge_margin"
-                        android:background="@drawable/bg_badge_button"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/roboto_medium"
-                            android:gravity="center"
-                            android:text="@string/badge_rabbitmq"
-                            android:textColor="@color/text_badge"
-                            android:textSize="@dimen/font_size_badge_text"
-                            android:paddingStart="@dimen/badge_padding_horizontal"
-                            android:paddingEnd="@dimen/badge_padding_horizontal"
-                            android:maxLines="1" />
-                    </FrameLayout>
-                </LinearLayout>
-
-                <!-- Row 2: ИТ маркетинг | B2B маркетинг | Google Anal -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/row_height"
-                    android:layout_marginTop="@dimen/grid_row_spacing"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_marketing"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_b2b_marketing"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_google_analytics"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-                </LinearLayout>
-
-                <!-- Row 3: Бизнес исследователь | Веб-аналитика | Big Data -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/row_height"
-                    android:layout_marginTop="@dimen/grid_row_spacing"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_researcher"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_web_analytics"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/badge_margin"
-                        android:background="@drawable/bg_badge_button"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/roboto_medium"
-                            android:gravity="center"
-                            android:text="@string/badge_big_data"
-                            android:textColor="@color/text_badge"
-                            android:textSize="@dimen/font_size_badge_text"
-                            android:paddingStart="@dimen/badge_padding_horizontal"
-                            android:paddingEnd="@dimen/badge_padding_horizontal"
-                            android:maxLines="1" />
-                    </FrameLayout>
-                </LinearLayout>
-
-                <!-- Row 4: Веб-дизайн | Cinema 4D | Промпт ин -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/row_height"
-                    android:layout_marginTop="@dimen/grid_row_spacing"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_design"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_cinema4d"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_prompt_engineering"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-                </LinearLayout>
-
-                <!-- Row 5: Three.js | Парсинг | Python-разр -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/row_height"
-                    android:layout_marginTop="@dimen/grid_row_spacing"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/badge_margin"
-                        android:background="@drawable/bg_badge_button"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/roboto_medium"
-                            android:gravity="center"
-                            android:text="@string/badge_three_js"
-                            android:textColor="@color/text_badge"
-                            android:textSize="@dimen/font_size_badge_text"
-                            android:paddingStart="@dimen/badge_padding_horizontal"
-                            android:paddingEnd="@dimen/badge_padding_horizontal"
-                            android:maxLines="1" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_parsing"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:text="@string/course_python"
-                        android:textColor="@color/course_text_normal"
-                        android:textSize="@dimen/font_size_course_text"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-                </LinearLayout>
             </LinearLayout>
 
-            <!-- Green horizontal line below -->
-            <View
-                android:id="@+id/green_divider_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_height"
-                android:layout_marginTop="@dimen/divider_margin_bottom"
-                android:background="@color/course_badge_background" />
-
-            <!-- Continue button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_continue"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height"
-                android:layout_margin="@dimen/button_margin_horizontal"
-                android:text="@string/button_continue"
-                android:textColor="@color/text_badge"
-                android:textSize="@dimen/font_size_button"
-                app:backgroundTint="@color/course_badge_background"
-                app:cornerRadius="@dimen/button_corner_radius"
-                app:rippleColor="@color/button_ripple_dark" />
-
-            <!-- Bottom indicator -->
-            <View
-                android:id="@+id/bottom_indicator"
-                android:layout_width="@dimen/bottom_indicator_width"
-                android:layout_height="@dimen/bottom_indicator_height"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/bottom_indicator_margin_top"
-                android:layout_marginBottom="@dimen/bottom_indicator_margin_bottom"
-                android:background="@color/text_primary_light" />
         </LinearLayout>
+
     </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_continue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="56dp"
+        android:fontFamily="@font/roboto_medium"
+        android:letterSpacing="0.007"
+        android:lineHeight="20dp"
+        android:minHeight="40dp"
+        android:text="@string/button_continue"
+        android:textColor="@color/text_primary_light"
+        android:textSize="@dimen/font_size_button"
+        app:backgroundTint="@color/course_badge_background"
+        app:cornerRadius="@dimen/button_continue_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
