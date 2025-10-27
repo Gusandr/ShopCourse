@@ -1,5 +1,7 @@
 package ru.gusandr.shopcourse.presentation.screens.auth.registration
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,12 +63,31 @@ class RegistrationFragment : Fragment() {
 
             btnRegister.setOnClickListener {
                 viewModel.onRegisterClick()
-                Toast.makeText(context, "всё крута", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "всё крута", Toast.LENGTH_LONG).show()
             }
 
             tvLogin.setOnClickListener {
                 // TODO: когда 2 экранчик сделаю подключить переходик было бы неплохо
             }
+
+            btnVk.setOnClickListener {
+                openSocialAuth(viewModel.getVkAuthUrl())
+            }
+            btnOk.setOnClickListener {
+                openSocialAuth(viewModel.getOkAuthUrl())
+            }
+        }
+    }
+
+    private fun openSocialAuth(url: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(url)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(intent)
+        } catch (_: Exception) {
+            Toast.makeText(requireContext(), "Не открывается $url, плаки плаки ;(", Toast.LENGTH_LONG).show()
         }
     }
 

@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import ru.gusandr.domain.usecase.OpenSocialAuthUseCase
 import ru.gusandr.domain.usecase.ValidateEmailUseCase
 import ru.gusandr.domain.usecase.ValidatePasswordUseCase
 
@@ -18,5 +19,10 @@ object DomainModule {
     @Provides
     fun provideValidatePasswordUseCase(): ValidatePasswordUseCase {
         return ValidatePasswordUseCase()
+    }
+
+    @Provides
+    fun provideOpenSocialAuthUseCase(): OpenSocialAuthUseCase {
+        return OpenSocialAuthUseCase()
     }
 }

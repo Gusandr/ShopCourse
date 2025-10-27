@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.gusandr.domain.model.ValidationResult
+import ru.gusandr.domain.usecase.OpenSocialAuthUseCase
 import ru.gusandr.domain.usecase.ValidateEmailUseCase
 import ru.gusandr.domain.usecase.ValidatePasswordUseCase
 import javax.inject.Inject
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class RegistrationViewModel @Inject constructor(
     private val validateEmailUseCase: ValidateEmailUseCase,
     private val validatePasswordUseCase: ValidatePasswordUseCase,
+    private val openSocialAuthUseCase: OpenSocialAuthUseCase,
     ) : ViewModel() {
     private val _uiState = MutableStateFlow(RegistrationUiState())
     val uiState: StateFlow<RegistrationUiState> = _uiState.asStateFlow()
@@ -60,6 +62,9 @@ class RegistrationViewModel @Inject constructor(
             )
         }
     }
+
+    fun getVkAuthUrl() = openSocialAuthUseCase.getVkUrl()
+    fun getOkAuthUrl() = openSocialAuthUseCase.getOkUrl()
 }
 
 data class RegistrationUiState(
