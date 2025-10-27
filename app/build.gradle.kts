@@ -88,6 +88,7 @@ dependencies {
     // Hilt (Решил использовать вместо Dagger чтобы было меньше заморочек с DI)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.fragment)
 
     // Security
     implementation(libs.encrypted.prefs.ktx)
@@ -107,4 +108,8 @@ dependencies {
     implementation(libs.core.splashscreen)
 
     implementation(libs.fragment.ktx)
+
+
+    implementation(project(":data"))
+    implementation(project(":domain"))
 }

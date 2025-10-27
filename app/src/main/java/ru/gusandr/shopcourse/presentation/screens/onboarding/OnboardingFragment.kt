@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import ru.gusandr.shopcourse.databinding.FragmentOnboardingBinding
 import ru.gusandr.shopcourse.presentation.navigation.collectNavigation
 
+@AndroidEntryPoint
 class OnboardingFragment : Fragment() {
 
     private var _binding: FragmentOnboardingBinding? = null
-
     private val binding
         get() = _binding!!
 

@@ -4,17 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import ru.gusandr.data.local.AuthPreferences
+import ru.gusandr.shopcourse.R
 import ru.gusandr.shopcourse.databinding.FragmentRegistrationBinding
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
-    private var _binding: FragmentRegistrationBinding? = null
 
+    private var _binding: FragmentRegistrationBinding? = null
     private val binding
         get() = _binding!!
 
-    private val viewModel: RegistrationViewModel by viewModels()
+    private val viewModel: RegistrationViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+
+    @Inject
+    lateinit var authPreferences: AuthPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,16 +42,56 @@ class RegistrationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
+        observeViewModel()
     }
 
     private fun setupUI() {
         with(binding) {
+            etEmail.addTextChangedListener { email ->
+                viewModel.onEmailChanged(email.toString())
+            }
 
+            etPassword.addTextChangedListener { password ->
+                viewModel.onPasswordChanged(password.toString())
+            }
+
+            etConfirmPassword.addTextChangedListener { confirmPassword ->
+                viewModel.onConfirmPasswordChanged(confirmPassword.toString())
+            }
+
+            btnRegister.setOnClickListener {
+                viewModel.onRegisterClick()
+                Toast.makeText(context, "всё крута", Toast.LENGTH_LONG).show()
+            }
+
+            tvLogin.setOnClickListener {
+                // TODO: когда 2 экранчик сделаю подключить переходик было бы неплохо
+            }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiState.collect { state ->
+                binding.btnRegister.isEnabled = state.isButtonEnabled && !state.isLoading
+
+                // тут можно реализовать показ состояния загрузки (isLoading)
+
+                if (state.isSuccess)
+                    handleRegistrationSuccess(state.email)
+            }
+        }
+    }
+
+    private fun handleRegistrationSuccess(email: String) {
+        authPreferences.setLoggedIn(true, email)
+
+        // TODO: переход на 2 экран
+    }
+
+
+    override fun onDestroyView() {
         _binding = null
+        super.onDestroyView()
     }
 }
