@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import dagger.hilt.android.AndroidEntryPoint
+import ru.gusandr.shopcourse.R
 import ru.gusandr.shopcourse.databinding.FragmentOnboardingBinding
 import ru.gusandr.shopcourse.presentation.navigation.collectNavigation
 
@@ -15,9 +16,9 @@ class OnboardingFragment : Fragment() {
 
     private var _binding: FragmentOnboardingBinding? = null
     private val binding
-        get() = _binding!!
+        get() = _binding?:throw Exception("binding is not be null!")
 
-    private val viewModel: OnboardingViewModel by viewModels()
+    private val viewModel: OnboardingViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -3,14 +3,18 @@ package ru.gusandr.shopcourse.presentation.screens.auth.registration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.gusandr.domain.model.ValidationResult
 import ru.gusandr.domain.usecase.OpenSocialAuthUseCase
 import ru.gusandr.domain.usecase.ValidateEmailUseCase
 import ru.gusandr.domain.usecase.ValidatePasswordUseCase
+import ru.gusandr.shopcourse.presentation.navigation.NavCommand
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,8 +23,12 @@ class RegistrationViewModel @Inject constructor(
     private val validatePasswordUseCase: ValidatePasswordUseCase,
     private val openSocialAuthUseCase: OpenSocialAuthUseCase,
     ) : ViewModel() {
+
     private val _uiState = MutableStateFlow(RegistrationUiState())
     val uiState: StateFlow<RegistrationUiState> = _uiState.asStateFlow()
+
+    private val _nav = Channel<NavCommand>(capacity = Channel.BUFFERED)
+    val nav: Flow<NavCommand> = _nav.receiveAsFlow()
 
     fun onEmailChanged(email: String) {
         _uiState.value = _uiState.value.copy(email = email)
@@ -60,6 +68,8 @@ class RegistrationViewModel @Inject constructor(
                 isLoading = false,
                 isSuccess = true
             )
+
+            _nav.send(NavCommand.To(RegistrationFragmentDirections.actionRegistrationToListCourses()))
         }
     }
 

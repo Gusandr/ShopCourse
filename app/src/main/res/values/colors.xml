@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background_default">#151515</color>
-    <color name="text_primary_light">#f2f2f3</color>
-    <color name="course_badge_background">#12B956</color>
+    <color name="primary_light">#f2f2f3</color>
+    <color name="green">#12B956</color>
     <color name="text_secondary">#80F2F2F3</color>
-
 </resources>

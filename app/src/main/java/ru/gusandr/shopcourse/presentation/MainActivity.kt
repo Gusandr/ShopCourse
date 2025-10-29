@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding
-        get() = _binding!!
+        get() = _binding?:throw Exception("binding is not be null!")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

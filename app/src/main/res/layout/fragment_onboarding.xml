@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_default"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.screens.onboarding.OnboardingFragment">
 
     <ScrollView
@@ -37,7 +38,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:lineHeight="36dp"
                     android:text="@string/onboarding_title_line1"
-                    android:textColor="@color/text_primary_light"
+                    android:textColor="@color/primary_light"
                     android:textSize="@dimen/font_size_title" />
 
                 <TextView
@@ -47,7 +48,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:lineHeight="36dp"
                     android:text="@string/onboarding_title_line2"
-                    android:textColor="@color/text_primary_light"
+                    android:textColor="@color/primary_light"
                     android:textSize="@dimen/font_size_title" />
             </LinearLayout>
 
@@ -83,9 +84,9 @@
         android:lineHeight="20dp"
         android:minHeight="40dp"
         android:text="@string/button_continue"
-        android:textColor="@color/text_primary_light"
+        android:textColor="@color/primary_light"
         android:textSize="@dimen/font_size_button"
-        app:backgroundTint="@color/course_badge_background"
+        app:backgroundTint="@color/green"
         app:cornerRadius="@dimen/button_continue_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

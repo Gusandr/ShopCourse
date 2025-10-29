@@ -90,22 +90,10 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.fragment)
 
-    // Security
-    implementation(libs.encrypted.prefs.ktx)
-
-    // DataStore
-    implementation(libs.datastore.preferences)
-
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-    // ViewPager2 для Onboarding
-    implementation(libs.viewpager2)
-
-    // Splash Screen API
-    implementation(libs.core.splashscreen)
 
     implementation(libs.fragment.ktx)
 

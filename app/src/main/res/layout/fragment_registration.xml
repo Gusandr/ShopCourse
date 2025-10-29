@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_default"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.screens.auth.registration.RegistrationFragment">
 
     <ScrollView
@@ -27,7 +28,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:lineHeight="36sp"
                 android:text="@string/registration_title"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textSize="28sp" />
 
             <TextView
@@ -38,7 +39,7 @@
                 android:letterSpacing="0.01"
                 android:lineHeight="18sp"
                 android:text="@string/email_label"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textSize="16sp" />
 
             <EditText
@@ -55,7 +56,7 @@
                 android:letterSpacing="0.018"
                 android:lineHeight="20dp"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
@@ -67,7 +68,7 @@
                 android:letterSpacing="0.01"
                 android:lineHeight="18dp"
                 android:text="@string/password_label"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textSize="16sp" />
 
             <EditText
@@ -84,7 +85,7 @@
                 android:letterSpacing="0.018"
                 android:lineHeight="20dp"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
@@ -96,7 +97,7 @@
                 android:letterSpacing="0.01"
                 android:lineHeight="18dp"
                 android:text="@string/confirm_password_label"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textSize="14sp" />
 
             <EditText
@@ -113,7 +114,7 @@
                 android:letterSpacing="0.018"
                 android:lineHeight="20dp"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
@@ -123,14 +124,15 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_rounded_button_default"
+                android:enabled="false"
                 android:fontFamily="@font/roboto_medium"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:lineHeight="20dp"
                 android:text="@string/register_button"
-                android:textColor="@color/text_primary_light"
+                android:textColor="@color/primary_light"
                 android:textSize="14sp"
-                app:backgroundTint="@color/course_badge_background"
+                app:backgroundTint="@color/green"
                 app:rippleColor="@android:color/transparent" />
 
             <LinearLayout
@@ -147,7 +149,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:lineHeight="15dp"
                     android:text="@string/already_have_account"
-                    android:textColor="@color/text_primary_light"
+                    android:textColor="@color/primary_light"
                     android:textSize="12sp" />
 
                 <TextView
@@ -161,7 +163,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:lineHeight="15dp"
                     android:text="@string/login"
-                    android:textColor="@color/course_badge_background"
+                    android:textColor="@color/green"
                     android:textSize="12sp" />
 
             </LinearLayout>

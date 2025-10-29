@@ -4,7 +4,7 @@ import ru.gusandr.domain.model.ValidationResult
 
 class ValidateEmailUseCase {
     private val emailRegex = Regex(
-        pattern = """^(?!.*\p{IsCyrillic})[^@\s]+@[^@\s.]+\.[^@\s]{2,}$""",
+        pattern = """^(?!.*\p{IsCyrillic})[^@\s]+@[^@\s.]+\.[^@\s]+$""",
         options = setOf(RegexOption.IGNORE_CASE)
     )
 

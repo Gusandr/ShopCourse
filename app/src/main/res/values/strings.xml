@@ -15,4 +15,11 @@
     <string name="register_button">Регистрация</string>
     <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="login">Войти</string>
+
+    <string name="sort_with_date_add">По дате добавления</string>
+    <string name="search_courses">Search courses..</string>
+    <string name="main">Главная</string>
+    <string name="favourites">Избранное</string>
+    <string name="account">Аккаунт</string>
+    <string name="learn_more">Подробнее</string>
 </resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_default"
+    android:fitsSystemWindows="true"
+    tools:context=".presentation.screens.courses.CoursesListFragment">
+
+    <LinearLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_input_field"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/search_courses"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:letterSpacing="0.018"
+            android:lineHeight="18dp"
+            android:minWidth="264dp"
+            android:paddingHorizontal="4dp"
+            android:textColor="#f2f2f3"
+            android:textColorHint="#32f2f2f3"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btn_filter"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_filter" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sort_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_container">
+
+        <TextView
+            android:id="@+id/tv_sort_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:letterSpacing="0.007"
+            android:text="@string/sort_with_date_add"
+            android:textColor="@color/green"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ic_sort"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_arrow_down_up"
+            app:tint="@color/green" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_courses"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sort_section"
+        tools:listitem="@layout/item_course_card" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="#24252A"
+        app:itemIconTint="@drawable/bottom_nav_colors"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemTextAppearanceActive="@style/BottomNavText"
+        app:itemTextAppearanceInactive="@style/BottomNavText"
+        app:itemTextColor="@drawable/bottom_nav_colors"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_nav" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

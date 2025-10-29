@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +16,7 @@ import kotlinx.coroutines.launch
 import ru.gusandr.data.local.AuthPreferences
 import ru.gusandr.shopcourse.R
 import ru.gusandr.shopcourse.databinding.FragmentRegistrationBinding
+import ru.gusandr.shopcourse.presentation.navigation.collectNavigation
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -24,7 +24,7 @@ class RegistrationFragment : Fragment() {
 
     private var _binding: FragmentRegistrationBinding? = null
     private val binding
-        get() = _binding!!
+        get() = _binding?:throw Exception("binding is not be null!")
 
     private val viewModel: RegistrationViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
@@ -45,6 +45,7 @@ class RegistrationFragment : Fragment() {
 
         setupUI()
         observeViewModel()
+        collectNavigation(viewModel.nav)
     }
 
     private fun setupUI() {
@@ -63,7 +64,6 @@ class RegistrationFragment : Fragment() {
 
             btnRegister.setOnClickListener {
                 viewModel.onRegisterClick()
-                Toast.makeText(requireContext(), "всё крута", Toast.LENGTH_LONG).show()
             }
 
             tvLogin.setOnClickListener {
@@ -96,18 +96,12 @@ class RegistrationFragment : Fragment() {
             viewModel.uiState.collect { state ->
                 binding.btnRegister.isEnabled = state.isButtonEnabled && !state.isLoading
 
-                // тут можно реализовать показ состояния загрузки (isLoading)
+                // тута можно реализовать показ состояния загрузки (isLoading)
 
                 if (state.isSuccess)
-                    handleRegistrationSuccess(state.email)
+                    authPreferences.setLoggedIn(true, state.email)
             }
         }
-    }
-
-    private fun handleRegistrationSuccess(email: String) {
-        authPreferences.setLoggedIn(true, email)
-
-        // TODO: переход на 2 экран
     }
 
 

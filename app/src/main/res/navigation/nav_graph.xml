@@ -26,6 +26,22 @@
         android:label="Регистрация"
         tools:layout="@layout/fragment_registration">
 
+        <action
+            android:id="@+id/action_registration_to_list_courses"
+            app:destination="@+id/listCoursesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/listCoursesFragment"
+        android:name="ru.gusandr.shopcourse.presentation.screens.courses.CoursesListFragment"
+        android:label="Главный экран"
+        tools:layout="@layout/fragment_list_courses">
+
+
     </fragment>
 
 </navigation>
