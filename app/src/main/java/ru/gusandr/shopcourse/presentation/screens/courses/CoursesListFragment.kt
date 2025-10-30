@@ -6,22 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import ru.gusandr.shopcourse.R
 import ru.gusandr.shopcourse.databinding.FragmentListCoursesBinding
+import ru.gusandr.shopcourse.presentation.screens.courses.adapter.CoursesAdapter
+
 @AndroidEntryPoint
 class CoursesListFragment : Fragment() {
+
     private var _binding: FragmentListCoursesBinding? = null
-    private val binding
-        get() = _binding?:throw Exception("binding is not be null!")
+    private val binding get() = _binding?:throw Exception("binding is not be null!")
 
     private val viewModel: CoursesListViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+    private val coursesAdapter = CoursesAdapter()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentListCoursesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,27 +33,25 @@ class CoursesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUI()
+        binding.rvCourses.adapter = coursesAdapter
 
-        viewModel.fetchCourses()
-        viewModel.getCourses()
-    }
+        binding.sortSection.setOnClickListener {
+            viewModel.switchSort()
+        }
 
-    private fun setupUI() {
-        with(binding) {
-            bottomNav.setOnItemSelectedListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.nav_home -> true
-                    R.id.nav_favorites -> {
-                        //findNavController().navigate(R.id.action_to_favorites)
-                        true
-                    }
-                    R.id.nav_account -> {
-                        //findNavController().navigate(R.id.action_to_account)
-                        true
-                    }
-                    else -> false
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.courses.collect { courses ->
+                coursesAdapter.submitList(null)
+                coursesAdapter.submitList(courses)
+            }
+        }
+
+        binding.bottomNav.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_home -> true
+                R.id.nav_favorites -> true
+                R.id.nav_account -> true
+                else -> false
             }
         }
     }

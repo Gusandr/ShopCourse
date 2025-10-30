@@ -84,6 +84,7 @@
             app:layout_constraintTop_toTopOf="@id/img_course">
 
             <ImageView
+                android:id="@+id/iv_favorite"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center"
@@ -127,7 +128,7 @@
                 android:maxLines="2"
                 android:textColor="#B3F2F2F3"
                 android:textSize="12sp"
-                tools:text="Освойте backend-разработку и программирование на Java, фреймворки Spring и Maven, работу с базами данных и API. Создайте свой собственный проект, собрав портфолио и став востребованным специалистом для любой IT компании." />
+                tools:text="Освойте backend-разработку и программирование на Java, фреймворки Spring и Maven, работу с базами данных и API." />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -136,17 +137,37 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_price"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:letterSpacing="0.009"
-                    android:lineHeight="18dp"
-                    android:textColor="@color/primary_light"
-                    android:textSize="16sp"
-                    tools:text="999 ₽" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:letterSpacing="0.009"
+                        android:lineHeight="18dp"
+                        android:textColor="@color/primary_light"
+                        android:textSize="16sp"
+                        tools:text="999" />
+
+                    <TextView
+                        android:id="@+id/tv_price_rubl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:letterSpacing="0.009"
+                        android:lineHeight="18dp"
+                        android:text="₽"
+                        android:textColor="@color/primary_light"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/btn_more"

@@ -9,7 +9,8 @@ import ru.gusandr.data.remote.GetListCoursesApi
 import ru.gusandr.domain.model.Course
 import ru.gusandr.domain.repository.CourseRepository
 
-class CourseRepositoryImpl(private val apiService: GetListCoursesApi, private val dao: CourseDao) : CourseRepository {
+class CourseRepositoryImpl(private val apiService: GetListCoursesApi, private val dao: CourseDao) :
+    CourseRepository {
     override suspend fun getCourses(): Flow<List<Course>> {
         return dao.getAll().map { list ->
             list.map { course ->
