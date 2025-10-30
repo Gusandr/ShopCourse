@@ -19,6 +19,14 @@ class CourseRepositoryImpl(private val apiService: GetListCoursesApi, private va
         }
     }
 
+    override suspend fun getCoursesLiked(): Flow<List<Course>> {
+        return dao.getCoursesLiked().map { list ->
+            list.map { course ->
+                CourseMapper.toDomain(course)
+            }
+        }
+    }
+
     override suspend fun fetchCourses(): Flow<Result<Unit>> = flow {
         try {
             val response = apiService.getCourses()
@@ -26,15 +34,39 @@ class CourseRepositoryImpl(private val apiService: GetListCoursesApi, private va
             if (response.isSuccessful) {
                 val coursesDto = response.body()?.courses ?: emptyList()
                 val courses = CourseMapper.toDomain(coursesDto)
-                courses.forEach {
-                    dao.insert(CourseMapper.toDb(it))
+
+                courses.forEach { course ->
+                    val courseDb = CourseMapper.toDb(course)
+                    dao.insertPreservingLike(
+                        id = courseDb.id,
+                        title = courseDb.title,
+                        text = courseDb.text,
+                        price = courseDb.price,
+                        rate = courseDb.rate,
+                        startDate = courseDb.startDate,
+                        hasLike = courseDb.hasLike,
+                        publishDate = courseDb.publishDate
+                    )
                 }
+
                 emit(Result.success(Unit))
             } else {
                 emit(Result.failure(Exception("HTTP ${response.code()}: ${response.message()}")))
             }
         } catch (e: Exception) {
             emit(Result.failure(e))
+        }
+    }
+
+    override suspend fun toggleCourseLike(courseId: Int): Result<Boolean> {
+        return try {
+            val oldStatus = dao.getCourseLikeStatus(courseId)
+
+            dao.toggleCourseLike(courseId)
+
+            Result.success(!oldStatus)
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_default"
     android:fitsSystemWindows="true"
-    tools:context=".presentation.screens.courses.CoursesListFragment">
+    tools:context=".presentation.screens.courses.list.CoursesListFragment">
 
     <LinearLayout
         android:id="@+id/toolbar_container"

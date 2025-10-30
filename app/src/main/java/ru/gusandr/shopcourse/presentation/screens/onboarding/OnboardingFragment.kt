@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import dagger.hilt.android.AndroidEntryPoint
+import ru.gusandr.data.local.AuthPreferences
 import ru.gusandr.shopcourse.R
 import ru.gusandr.shopcourse.databinding.FragmentOnboardingBinding
 import ru.gusandr.shopcourse.presentation.navigation.collectNavigation
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {
@@ -19,6 +21,9 @@ class OnboardingFragment : Fragment() {
         get() = _binding?:throw Exception("binding is not be null!")
 
     private val viewModel: OnboardingViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+
+    @Inject
+    lateinit var authPreferences: AuthPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +38,9 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         collectNavigation(viewModel.nav)
+        if (authPreferences.isLoggedIn()) {
+            viewModel.switchToListCourses()
+        }
 
         setupUI()
     }

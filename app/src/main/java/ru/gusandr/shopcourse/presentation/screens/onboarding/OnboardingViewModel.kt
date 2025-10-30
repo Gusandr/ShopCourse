@@ -20,4 +20,10 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
             _nav.send(NavCommand.To(OnboardingFragmentDirections.actionOnboardingToRegistration()))
         }
     }
+
+    fun switchToListCourses() {
+        viewModelScope.launch {
+            _nav.send(NavCommand.To(OnboardingFragmentDirections.actionOnboardingToListCourses()))
+        }
+    }
 }

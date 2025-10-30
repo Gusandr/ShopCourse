@@ -18,6 +18,12 @@
             app:popUpTo="@id/onboardingFragment"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_onboarding_to_list_courses"
+            app:destination="@+id/listCoursesFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -37,10 +43,31 @@
 
     <fragment
         android:id="@+id/listCoursesFragment"
-        android:name="ru.gusandr.shopcourse.presentation.screens.courses.CoursesListFragment"
+        android:name="ru.gusandr.shopcourse.presentation.screens.courses.list.CoursesListFragment"
         android:label="Главный экран"
         tools:layout="@layout/fragment_list_courses">
 
+        <action
+            android:id="@+id/action_list_courses_to_favorites"
+            app:destination="@+id/favoritesCoursesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popUpTo="@id/listCoursesFragment"
+            app:popUpToInclusive="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoritesCoursesFragment"
+        android:name="ru.gusandr.shopcourse.presentation.screens.courses.favorites.FavoritesCoursesFragment"
+        android:label="Экран избранного"
+        tools:layout="@layout/fragment_favorites_courses">
+
+        <action
+            android:id="@+id/action_favorites_courses_to_list"
+            app:destination="@+id/listCoursesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popUpTo="@id/favoritesCoursesFragment"
+            app:popUpToInclusive="false" />
 
     </fragment>
 
