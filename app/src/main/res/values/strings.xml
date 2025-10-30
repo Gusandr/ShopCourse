@@ -12,7 +12,6 @@
     <string name="email_label">Email</string>
     <string name="password_label">Пароль</string>
     <string name="confirm_password_label">Повторить пароль</string>
-    <string name="register_button">Регистрация</string>
     <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="login">Войти</string>
 
@@ -23,4 +22,8 @@
     <string name="account">Аккаунт</string>
     <string name="learn_more">Подробнее</string>
     <string name="favorites">Избранное</string>
+
+    <string name="login_title">Вход</string>
+    <string name="not_have_account">Нету аккаунта?</string>
+    <string name="forgot_password">Забыл пароль</string>
 </resources>

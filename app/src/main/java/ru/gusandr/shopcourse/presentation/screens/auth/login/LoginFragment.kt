@@ -1,4 +1,4 @@
-package ru.gusandr.shopcourse.presentation.screens.auth.registration
+package ru.gusandr.shopcourse.presentation.screens.auth.login
 
 import android.content.Intent
 import android.net.Uri
@@ -15,18 +15,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.gusandr.data.local.AuthPreferences
 import ru.gusandr.shopcourse.R
-import ru.gusandr.shopcourse.databinding.FragmentRegistrationBinding
+import ru.gusandr.shopcourse.databinding.FragmentLoginBinding
 import ru.gusandr.shopcourse.presentation.navigation.collectNavigation
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RegistrationFragment : Fragment() {
-
-    private var _binding: FragmentRegistrationBinding? = null
+class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
     private val binding
         get() = _binding?:throw Exception("binding is not be null!")
 
-    private val viewModel: RegistrationViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+    private val viewModel: LoginViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
     @Inject
     lateinit var authPreferences: AuthPreferences
@@ -36,7 +35,7 @@ class RegistrationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -58,16 +57,12 @@ class RegistrationFragment : Fragment() {
                 viewModel.onPasswordChanged(password.toString())
             }
 
-            etConfirmPassword.addTextChangedListener { confirmPassword ->
-                viewModel.onConfirmPasswordChanged(confirmPassword.toString())
+            btnLogin.setOnClickListener {
+                viewModel.onLoginClick()
             }
 
-            btnRegister.setOnClickListener {
-                viewModel.onRegisterClick()
-            }
-
-            tvLogin.setOnClickListener {
-                viewModel.onSwitchToLogin()
+            tvRegistration.setOnClickListener {
+                viewModel.onSwitchToRegistration()
             }
 
             btnVk.setOnClickListener {
@@ -94,9 +89,9 @@ class RegistrationFragment : Fragment() {
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
-                binding.btnRegister.isEnabled = state.isButtonEnabled && !state.isLoading
+                binding.btnLogin.isEnabled = state.isButtonEnabled && !state.isLoading
 
-                // тута можно реализовать показ состояния загрузки (isLoading)
+                // isLoading - тута
 
                 if (state.isSuccess)
                     authPreferences.setLoggedIn(true, state.email)

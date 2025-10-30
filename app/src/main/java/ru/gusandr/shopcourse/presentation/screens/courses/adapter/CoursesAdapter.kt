@@ -1,10 +1,7 @@
 package ru.gusandr.shopcourse.presentation.screens.courses.adapter
 
-import android.annotation.SuppressLint
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.gusandr.domain.model.Course

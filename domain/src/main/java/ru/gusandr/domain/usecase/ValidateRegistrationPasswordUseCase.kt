@@ -2,7 +2,7 @@ package ru.gusandr.domain.usecase
 
 import ru.gusandr.domain.model.ValidationResult
 
-class ValidatePasswordUseCase {
+class ValidateRegistrationPasswordUseCase {
     operator fun invoke(password: String, confirmPassword: String): ValidationResult {
         return when {
             !isValidPassword(password, confirmPassword) -> ValidationResult.Error

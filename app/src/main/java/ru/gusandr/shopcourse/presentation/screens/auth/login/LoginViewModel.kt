@@ -1,4 +1,4 @@
-package ru.gusandr.shopcourse.presentation.screens.auth.registration
+package ru.gusandr.shopcourse.presentation.screens.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,19 +13,18 @@ import kotlinx.coroutines.launch
 import ru.gusandr.domain.model.ValidationResult
 import ru.gusandr.domain.usecase.OpenSocialAuthUseCase
 import ru.gusandr.domain.usecase.ValidateEmailUseCase
-import ru.gusandr.domain.usecase.ValidateRegistrationPasswordUseCase
+import ru.gusandr.domain.usecase.ValidateLoginPasswordUseCase
 import ru.gusandr.shopcourse.presentation.navigation.NavCommand
 import javax.inject.Inject
 
 @HiltViewModel
-class RegistrationViewModel @Inject constructor(
+class LoginViewModel @Inject constructor(
     private val validateEmailUseCase: ValidateEmailUseCase,
-    private val validatePasswordUseCase: ValidateRegistrationPasswordUseCase,
+    private val validatePasswordUseCase: ValidateLoginPasswordUseCase,
     private val openSocialAuthUseCase: OpenSocialAuthUseCase,
-    ) : ViewModel() {
-
-    private val _uiState = MutableStateFlow(RegistrationUiState())
-    val uiState: StateFlow<RegistrationUiState> = _uiState.asStateFlow()
+) : ViewModel() {
+    private val _uiState = MutableStateFlow(LoginUiState())
+    val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
 
     private val _nav = Channel<NavCommand>(capacity = Channel.BUFFERED)
     val nav: Flow<NavCommand> = _nav.receiveAsFlow()
@@ -40,17 +39,11 @@ class RegistrationViewModel @Inject constructor(
         updateButtonState()
     }
 
-    fun onConfirmPasswordChanged(confirmPassword: String) {
-        _uiState.value = _uiState.value.copy(confirmPassword = confirmPassword)
-        updateButtonState()
-    }
-
     private fun updateButtonState() {
         val currState = _uiState.value
         val emailValid = validateEmailUseCase(currState.email) is ValidationResult.Success
         val passwordValid = validatePasswordUseCase(
             currState.password,
-            currState.confirmPassword
         ) is ValidationResult.Success
 
         _uiState.value = currState.copy(
@@ -58,7 +51,7 @@ class RegistrationViewModel @Inject constructor(
         )
     }
 
-    fun onRegisterClick() {
+    fun onLoginClick() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
 
@@ -69,13 +62,13 @@ class RegistrationViewModel @Inject constructor(
                 isSuccess = true
             )
 
-            _nav.send(NavCommand.To(RegistrationFragmentDirections.actionRegistrationToListCourses()))
+            _nav.send(NavCommand.To(LoginFragmentDirections.actionLoginToListCourses()))
         }
     }
 
-    fun onSwitchToLogin() {
+    fun onSwitchToRegistration() {
         viewModelScope.launch {
-            _nav.send(NavCommand.To(RegistrationFragmentDirections.actionRegistrationToLogin()))
+            _nav.send(NavCommand.To(LoginFragmentDirections.actionLoginToRegistration()))
         }
     }
 
@@ -83,10 +76,9 @@ class RegistrationViewModel @Inject constructor(
     fun getOkAuthUrl() = openSocialAuthUseCase.getOkUrl()
 }
 
-data class RegistrationUiState(
+data class LoginUiState(
     val email: String = "",
     val password: String = "",
-    val confirmPassword: String = "",
     val isLoading: Boolean = false,
     val isSuccess: Boolean = false,
     val isButtonEnabled: Boolean = false

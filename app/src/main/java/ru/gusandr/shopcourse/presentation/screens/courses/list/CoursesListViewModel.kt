@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import ru.gusandr.domain.model.Course
 import ru.gusandr.domain.repository.CourseRepository
 import ru.gusandr.shopcourse.presentation.navigation.NavCommand
-import ru.gusandr.shopcourse.presentation.screens.onboarding.OnboardingFragmentDirections
 import javax.inject.Inject
 
 @HiltViewModel
